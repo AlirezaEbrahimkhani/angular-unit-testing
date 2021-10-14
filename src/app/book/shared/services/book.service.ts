@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -28,8 +29,8 @@ export class BookService {
     localStorage.removeItem(key);
   }
 
-  public hasBookInStore(): boolean {
-    if (this.books.length > 0) return true;
-    else return false;
+  public hasBookInStore(): Observable<boolean> {
+    if (this.books.length > 0) return of(true);
+    else return of(false);
   }
 }

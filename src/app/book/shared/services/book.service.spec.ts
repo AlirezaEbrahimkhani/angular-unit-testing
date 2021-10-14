@@ -20,14 +20,14 @@ describe('Service: Book', () => {
     expect(storedDataInLocalStorage).toBe('ebrahimkhani');
   });
 
-  it('should read value $test localstorage$ with key of x from localstorage' , () => {
-    localStorage.setItem("x" , "test localstorage")
+  it('should read value $test localstorage$ with key of x from localstorage', () => {
+    localStorage.setItem('x', 'test localstorage');
     expect(service.readItemFromLocalStorage('x')).toBe('test localstorage');
-  })
+  });
 
-  it('should remove value $test localstorage$ with key of x from localstorage' , () => {
-    localStorage.setItem("x" , "test localstorage")
+  it('should remove value $test localstorage$ with key of x from localstorage', () => {
+    localStorage.setItem('x', 'test localstorage');
     service.removeItemFromLocalStorage('x');
     expect(localStorage.getItem('x')).toBeNull();
-  })
+  });
 });
