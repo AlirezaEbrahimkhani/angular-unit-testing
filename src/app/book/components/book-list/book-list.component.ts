@@ -7,11 +7,14 @@ import { BookService } from '../../shared/services/book.service';
   styleUrls: ['./book-list.component.scss'],
 })
 export class BookListComponent implements OnInit {
-  constructor(public bookService: BookService) {}
 
-  ngOnInit(): void {}
+  bookInStore : boolean = true
 
-  bookInStore(){
-    return this.bookService.hasBookInStore()
+  constructor(private bookService: BookService) {}
+
+  ngOnInit(): void {
+    this.bookService.hasBookInStore().subscribe((hasBook) => {
+      this.bookInStore = hasBook;
+    })
   }
 }
