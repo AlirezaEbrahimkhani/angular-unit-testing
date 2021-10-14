@@ -1,31 +1,30 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
-describe('AppComponent', () => {
+describe('Component: App', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let component: AppComponent;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent],
     }).compileComponents();
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  it('should create component truthly', () => {
+    expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'practice-theme'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('practice-theme');
-  });
+  it('title property should have $practice-theme$ value' , () => {
+    expect(component.title).toBe('practice-theme');
+  })
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it('should render a $practice-theme$ as title in html', () => {
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('practice-theme app is running!');
+    const compiledHTML = fixture.nativeElement as HTMLElement;
+    expect(compiledHTML.querySelector('.title')?.textContent).toContain(
+      'practice-theme'
+    );
   });
 });
