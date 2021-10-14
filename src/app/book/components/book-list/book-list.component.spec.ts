@@ -15,10 +15,10 @@ describe('Component: BookList', () => {
     await TestBed.configureTestingModule({
       declarations: [BookListComponent],
     }).compileComponents();
-    fixture = TestBed.createComponent(BookListComponent)
+    fixture = TestBed.createComponent(BookListComponent);
     service = TestBed.inject(BookService);
     component = fixture.componentInstance;
-    el = fixture.debugElement
+    el = fixture.debugElement;
   });
 
   it('should create component truthly', () => {
@@ -47,18 +47,18 @@ describe('Component: BookList', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should display $Book In Store$ when book is in Store' , () => {
+  it('should display $Book In Store$ when book is in Store', () => {
     expect(el.nativeElement.textContent.trim()).toBe('');
     fixture.detectChanges();
-    expect(el.nativeElement.textContent.trim()).toBe('Book In Store')
-  })
+    expect(el.nativeElement.textContent.trim()).toBe('Book In Store');
+  });
 
-  it('should display $Book Not In Store$ when book is in Store' , () => {
+  it('should display $Book Not In Store$ when book is in Store', () => {
     expect(el.nativeElement.textContent.trim()).toBe('');
-    fixture.detectChanges()
+    fixture.detectChanges();
     expect(el.nativeElement.textContent.trim()).toBe('Book In Store');
     spyOn(service, 'hasBookInStore').and.returnValue(false);
     fixture.detectChanges();
     expect(el.nativeElement.textContent.trim()).toBe('Book Not In Store');
-  })
+  });
 });
