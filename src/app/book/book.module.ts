@@ -5,9 +5,10 @@ import { BookListComponent } from './components/book-list/book-list.component';
 import { MatCardModule } from '@angular/material/card';
 import { BookRoutingComponent } from './book-routing.component';
 import { BookRoutingModule } from './book.routing';
+import { BookDetailComponent } from './components/book-detail/book-detail.component';
 
 @NgModule({
-  declarations: [ReplaceUnderlinePipe, BookListComponent, BookRoutingComponent],
+  declarations: [ReplaceUnderlinePipe, BookListComponent, BookRoutingComponent, BookDetailComponent],
   imports: [CommonModule, MatCardModule, BookRoutingModule],
   exports: [BookListComponent],
 })
