@@ -9,11 +9,15 @@ import { BookService } from '../../shared/services/book.service';
 export class BookListComponent implements OnInit {
   bookInStore: boolean = true;
 
-  constructor(private bookService: BookService) {}
+  constructor(public bookService: BookService) {}
 
   ngOnInit(): void {
     this.bookService.hasBookInStore().subscribe((hasBook) => {
       this.bookInStore = hasBook;
     });
+  }
+
+  bookClicked($event: any) {
+    console.log($event);
   }
 }

@@ -1,2 +1,7 @@
 <p *ngIf="bookInStore">Book In Store</p>
 <p *ngIf="!bookInStore">Book Not In Store</p>
+<app-book-detail
+  *ngFor="let item of bookService.books"
+  [book]="item"
+  (clickBook)="bookClicked($event)"
+></app-book-detail>
