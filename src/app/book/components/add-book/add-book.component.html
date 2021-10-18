@@ -1,1 +1,13 @@
-<p>add-book works!</p>
+<form>
+  <label>Title</label>
+  <input type="text" #title />
+  <label>Password</label>
+  <input type="password" #password />
+  <button
+    type="button"
+    (click)="addBook(title.value, password.value)"
+    [disabled]="!enabled"
+  >
+    Add
+  </button>
+</form>
