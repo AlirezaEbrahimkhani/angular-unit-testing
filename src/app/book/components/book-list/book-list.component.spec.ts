@@ -2,11 +2,13 @@ import { DebugElement } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
+  inject,
   TestBed,
   tick,
   waitForAsync,
 } from '@angular/core/testing';
 import { of } from 'rxjs';
+import { ReplaceUnderlinePipe } from '../../shared/pipes/replace-underline.pipe';
 import { BookService } from '../../shared/services/book.service';
 
 import { BookListComponent } from './book-list.component';
@@ -20,6 +22,7 @@ describe('Component: BookList', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [BookListComponent],
+      providers: [BookService],
     }).compileComponents();
     fixture = TestBed.createComponent(BookListComponent);
     service = TestBed.inject(BookService);
@@ -30,6 +33,14 @@ describe('Component: BookList', () => {
   it('should create component truthly', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should inject book service into component truthly and have the same instance', inject(
+    [BookService],
+    (injectService: BookService) => {
+      expect(injectService).toBe(service);
+    }
+  ));
+  
 
   it('should return true when store has book', () => {
     service.hasBookInStore().subscribe((hasBook) => {
