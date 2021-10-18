@@ -1,6 +1,11 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+  waitForAsync,
+} from '@angular/core/testing';
 import { of } from 'rxjs';
 import { BookService } from '../../shared/services/book.service';
 
@@ -63,7 +68,7 @@ describe('Component: BookList', () => {
     expect(el.nativeElement.textContent.trim()).toBe('Book In Store');
   });
 
-  it('should display $Book Not In Store$ when book is in Store', () => {
+  it('should display $Book Not In Store$ when book is not in Store', () => {
     expect(el.nativeElement.textContent.trim()).toBe('');
     fixture.detectChanges();
     expect(el.nativeElement.textContent.trim()).toBe('Book In Store');
@@ -72,4 +77,44 @@ describe('Component: BookList', () => {
     fixture.detectChanges();
     expect(el.nativeElement.textContent.trim()).toBe('Book Not In Store');
   });
+
+  it('Jasmin Done : should display $Book Not In Store$ when book is not in Store', () => {
+    expect(el.nativeElement.textContent.trim()).toBe('');
+    fixture.detectChanges();
+    expect(el.nativeElement.textContent.trim()).toBe('Book In Store');
+    let serviceSpy = spyOn(service, 'hasBookInStore').and.returnValue(
+      of(false)
+    );
+    component.ngOnInit();
+    serviceSpy.calls.mostRecent().returnValue.subscribe(() => {
+      fixture.detectChanges();
+      expect(el.nativeElement.textContent.trim()).toBe('Book Not In Store');
+    });
+  });
+
+  it(
+    'jasmin async() and whenStable() : should display $Book Not In Store$ when book is not in Store',
+    waitForAsync(() => {
+      expect(el.nativeElement.textContent.trim()).toBe('');
+      fixture.detectChanges();
+      expect(el.nativeElement.textContent.trim()).toBe('Book In Store');
+      spyOn(service, 'hasBookInStore').and.returnValue(of(false));
+      component.ngOnInit();
+      fixture.whenStable().then(() => {
+        fixture.detectChanges();
+        expect(el.nativeElement.textContent.trim()).toBe('Book Not In Store');
+      });
+    })
+  );
+
+  it('jasmin fakeAsync() and tick() : should display $Book Not In Store$ when book is not in Store', fakeAsync(() => {
+    expect(el.nativeElement.textContent.trim()).toBe('');
+    fixture.detectChanges();
+    expect(el.nativeElement.textContent.trim()).toBe('Book In Store');
+    spyOn(service, 'hasBookInStore').and.returnValue(of(false));
+    component.ngOnInit();
+    tick();
+    fixture.detectChanges();
+    expect(el.nativeElement.textContent.trim()).toBe('Book Not In Store');
+  }));
 });
