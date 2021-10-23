@@ -54,6 +54,18 @@ describe('Component: AddBook"', () => {
     expect(error['pattern']).toBeTruthy();
   })
 
+  it('should submitting a form emits a user', () => {
+    expect(component.form.valid).toBeFalsy();
+    component.form.controls['email'].setValue("test@test.com");
+    component.form.controls['password'].setValue("123456789");
+    expect(component.form.valid).toBeTruthy();
+    let user: User = new User();
+    component.loggedIn.subscribe((value) => user = value);
+    component.addBook();
+    expect(user.email).toBe("test@test.com");
+    expect(user.password).toBe("123456789");
+  });
+
   // it('should after Entering title and password emits loggedIn event', () => {
   //   let book: User | any;
   //   emailEl.nativeElement.value = 'test@test.com';
