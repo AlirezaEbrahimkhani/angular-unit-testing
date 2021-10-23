@@ -1,5 +1,6 @@
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { AddBookComponent } from '../../components/add-book/add-book.component';
 import { HoverFocusDirective } from './hover-focus.directive';
@@ -12,6 +13,7 @@ describe('Directive: HoverFocus', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [HoverFocusDirective, AddBookComponent],
+      providers: [FormBuilder],
     }).compileComponents();
     directive = new HoverFocusDirective();
     fixture = TestBed.createComponent(AddBookComponent);

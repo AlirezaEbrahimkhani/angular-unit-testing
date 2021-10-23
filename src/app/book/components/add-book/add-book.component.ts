@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-book',
@@ -8,16 +9,23 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class AddBookComponent {
   @Output() loggedIn = new EventEmitter<any>();
   @Input() enabled = true;
+  form: FormGroup = this.fb.group({
+    email: ['', [Validators.required, Validators.pattern('[^ @]*@[^ @]*')]],
+    password: ['', [Validators.required, Validators.minLength(8)]],
+  });
 
-  addBook(email: any, password: any) {
-    console.log(`Login ${email} ${password}`);
-    if (email && password) {
-      console.log(`Emitting`);
-      this.loggedIn.emit(new Book(email, password));
+  constructor(private fb: FormBuilder) {}
+
+  addBook() {
+    console.log(this.form.value);
+    if (this.form.valid) {
+      this.loggedIn.emit(
+        new User(this.form.value.email, this.form.value.password)
+      );
     }
   }
 }
 
-export class Book {
-  constructor(public title: string, public password: string) {}
+export class User {
+  constructor(public email?: string, public password?: string) {}
 }
