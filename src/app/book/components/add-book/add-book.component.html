@@ -1,13 +1,7 @@
-<form>
-  <label appHoverFocus>Title</label>
-  <input type="text" #title />
+<form [formGroup]="form" (ngSubmit)="addBook()">
+  <label appHoverFocus>Email</label>
+  <input type="email" formControlName="email" />
   <label>Password</label>
-  <input type="password" #password />
-  <button
-    type="button"
-    (click)="addBook(title.value, password.value)"
-    [disabled]="!enabled"
-  >
-    Add
-  </button>
+  <input type="password" formControlName="password" />
+  <button type="submit" [disabled]="!enabled">Add</button>
 </form>

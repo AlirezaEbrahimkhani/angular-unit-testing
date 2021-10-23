@@ -7,10 +7,23 @@ import { BookRoutingComponent } from './book-routing.component';
 import { BookRoutingModule } from './book.routing';
 import { AddBookComponent } from './components/add-book/add-book.component';
 import { HoverFocusDirective } from './shared/directives/hover-focus.directive';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [ReplaceUnderlinePipe, BookListComponent, BookRoutingComponent, AddBookComponent, HoverFocusDirective],
-  imports: [CommonModule, MatCardModule, BookRoutingModule],
+  declarations: [
+    ReplaceUnderlinePipe,
+    BookListComponent,
+    BookRoutingComponent,
+    AddBookComponent,
+    HoverFocusDirective,
+  ],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    BookRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   exports: [BookListComponent],
 })
 export class BookModule {}
