@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 
 import { AddBookComponent, User } from './add-book.component';
 
-describe('Component: AddBook"', () => {
+describe('Component: AddBook', () => {
   let component: AddBookComponent;
   let fixture: ComponentFixture<AddBookComponent>;
   let submitEl: DebugElement;
