@@ -9,6 +9,7 @@ import { AddBookComponent } from './components/add-book/add-book.component';
 import { HoverFocusDirective } from './shared/directives/hover-focus.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     ReplaceUnderlinePipe,
@@ -23,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BookRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [BookListComponent],
 })
